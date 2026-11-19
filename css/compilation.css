@@ -1,0 +1,47 @@
+/* The progress bar visualizes a five-second local animation, not a network request. */
+.network-progress{width:min(100%,440px);height:3px;margin:0 auto 16px;background:#23503c;border-radius:999px;overflow:hidden}
+.network-progress-fill{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--green),#7ef0ac);box-shadow:0 0 8px #45d98b}
+@keyframes progress-connect{from{width:0}to{width:100%}}
+@keyframes sequence-line{from{opacity:.12;stroke-dashoffset:160}to{opacity:1;stroke-dashoffset:0}}
+@keyframes sequence-node{from{fill:#0d3021;filter:none}to{fill:#4adf91;filter:drop-shadow(0 0 8px #4adf91)}}
+@keyframes sequence-pulse{from{opacity:.6;transform:scale(.42)}to{opacity:0;transform:scale(1.45)}}
+@keyframes network-complete-flash{0%{opacity:.9;filter:drop-shadow(0 0 2px #49d99a)}35%{opacity:1;filter:drop-shadow(0 0 19px #71eda7)}100%{opacity:.55;filter:drop-shadow(0 0 9px #49d99a)}}
+@keyframes complete-enter{from{opacity:0;transform:translate(-50%,-50%) scale(.78)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+@keyframes complete-dissolve{from{opacity:1;filter:blur(0)}to{opacity:0;filter:blur(5px)}}
+@keyframes card-handoff{from{opacity:0}to{opacity:1}}
+
+.engine-panel.is-initializing .run-button{box-shadow:0 0 0 5px #49d99a35,0 0 32px #49d99a80}
+.engine-panel.is-initializing .network-core,.engine-panel.is-connecting .network-core{filter:drop-shadow(0 0 11px #65eaa3)}
+.engine-panel.is-initializing .network-pulse,.engine-panel.is-connecting .network-pulse{animation:sequence-pulse .8s ease-out infinite}
+.engine-panel.is-connecting .network-line{stroke:#70e1a6;stroke-width:2;animation:sequence-line .55s ease-out calc(var(--order)*.08s) both}
+.engine-panel.is-connecting .network-node{animation:sequence-node .42s ease-out calc(var(--order)*.1s) both}
+.engine-panel.is-connecting .network-signal{opacity:1;animation:data-travel 1.25s linear infinite}
+.engine-panel.is-connecting .network-progress-fill{animation:progress-connect 1.5s linear forwards}
+.engine-panel.is-complete .network-art{animation:network-complete-flash .55s ease-out both}
+.engine-panel.is-complete .network-progress-fill,.engine-panel.is-fragmenting .network-progress-fill{width:100%}
+.engine-panel.is-fragmenting .network-art{opacity:.17;transition:opacity .5s}
+
+.compilation-stage{position:fixed;inset:0;z-index:5;overflow:hidden;pointer-events:none;contain:layout style}
+.complete-word{position:absolute;display:flex;align-items:center;gap:.18em;white-space:nowrap;transform:translate(-50%,-50%) scale(.78);opacity:0;font:700 clamp(2.4rem,8vw,5.6rem)/1 var(--font-display);letter-spacing:-.055em;color:#71eba5;text-shadow:0 0 25px #29bb73a0,0 0 50px #1f925762}
+.complete-word .complete-check{font-size:.47em;border:2px solid currentColor;border-radius:50%;width:1.35em;height:1.35em;display:grid;place-items:center;letter-spacing:0;flex:none}
+.compilation-stage.is-complete .complete-word{animation:complete-enter .42s cubic-bezier(.2,.9,.25,1.15) forwards}
+.compilation-stage.is-fragmenting .complete-word{animation:complete-dissolve .22s ease-out forwards}
+.data-fragment{position:absolute;width:8px;height:8px;border-radius:1px;background:#63e7a0;box-shadow:0 0 10px #47d789aa;opacity:0;will-change:transform,opacity}
+.data-fragment.is-orange{background:#f5a15c;box-shadow:0 0 10px #f3702188}
+.card-ghost{position:absolute;opacity:0;border:1px solid #65d99a;border-radius:18px;box-shadow:0 0 27px #2fd3834d,inset 0 0 20px #33cb7733;transform:scale(.82);transform-origin:center;overflow:hidden;will-change:transform,opacity}
+.card-ghost::before{content:'';position:absolute;inset:0;background:linear-gradient(145deg,#11291ff1,#0b1d18f8);opacity:0;transition:opacity .4s .32s}
+.card-ghost::after{content:'';position:absolute;inset:9px;border:1px solid #66d69c5e;border-radius:11px;opacity:0;transition:opacity .35s .27s}
+.compilation-stage.is-reconstructing .card-ghost{opacity:1;transform:scale(1);transition:opacity .2s,transform .8s cubic-bezier(.16,.8,.22,1)}
+.compilation-stage.is-reconstructing .card-ghost::before,.compilation-stage.is-reconstructing .card-ghost::after{opacity:1}
+.compilation-stage.is-handing-off .card-ghost{opacity:0;transition:opacity .32s}
+.compilation-stage.is-handing-off .data-fragment{opacity:0;transition:opacity .3s}
+.screen-message.is-preparing .message-panel,.screen-message.is-preparing .home-button{visibility:hidden}
+.screen-message.is-visible .message-panel{animation:card-handoff .32s ease-out both}
+.screen-message.is-visible .home-button{animation:fade-up .45s .35s both}
+
+@media(max-width:600px){
+  .network-progress{margin-bottom:13px}
+  .complete-word{font-size:clamp(1.8rem,8vw,3rem)}
+  .complete-word .complete-check{border-width:1.5px}
+  .data-fragment{width:6px;height:6px}
+}

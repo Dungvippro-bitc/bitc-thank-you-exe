@@ -1,0 +1,11 @@
+@keyframes fade-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{50%{opacity:0}}
+@keyframes node-breathe{50%{opacity:.65;filter:drop-shadow(0 0 7px #42db91)}}
+@keyframes data-travel{to{stroke-dashoffset:-80}}
+@keyframes activate-line{from{opacity:.15;stroke-dashoffset:170}to{opacity:1;stroke-dashoffset:0}}
+@keyframes ring-expand{from{opacity:.65;transform:scale(.35)}to{opacity:0;transform:scale(1.5)}}
+@keyframes message-enter{from{opacity:0;transform:translateY(15px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.screen-message.is-visible .message-panel{animation:message-enter .55s ease-out both}.screen-message.is-visible .message-inner h2{animation:fade-up .5s .12s both}.screen-message.is-visible .message-greeting{animation:fade-up .65s .23s both}.screen-message.is-visible .message-signoff{animation:fade-up .5s .4s both}
+.network-line{stroke:#367b57;stroke-width:1.5;opacity:.55}.network-secondary{stroke:#2b644c;stroke-width:1;opacity:.35}.network-node{fill:#0d3021;stroke:#54b67c;stroke-width:2;animation:node-breathe 4s ease-in-out infinite}.network-node:nth-of-type(2n){animation-delay:1.2s}.network-core{fill:#123e2b;stroke:#54d68d;stroke-width:2}.network-core-glow{fill:#25c77b;opacity:.12}.network-pulse{fill:none;stroke:#39da8a;opacity:0;stroke-width:2;transform-origin:center;transform-box:fill-box}.network-signal{stroke:#6af5ab;stroke-width:3;stroke-dasharray:6 74;opacity:0;fill:none;filter:drop-shadow(0 0 5px #5ceba1)}
+.engine-panel.is-initializing .network-pulse{animation:ring-expand .7s ease-out 2}.engine-panel.is-connecting .network-line,.engine-panel.is-assembling .network-line{stroke:#65dda0;stroke-width:2;animation:activate-line .65s both}.engine-panel.is-connecting .network-line:nth-of-type(3n){animation-delay:.15s}.engine-panel.is-connecting .network-signal,.engine-panel.is-assembling .network-signal{opacity:1;animation:data-travel 1s linear infinite}.engine-panel.is-assembling .network-core-glow{opacity:.4}.engine-panel.is-assembling .network-core{filter:drop-shadow(0 0 12px #65dda0)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}

@@ -1,0 +1,27 @@
+/* Both original PNGs already contain alpha. The BTEC plate stays light so its blue lettering remains legible. */
+.site-header{padding-top:14px;padding-bottom:14px}
+.brand-plate{height:70px;display:grid;place-items:center;flex:none;border:1px solid;border-radius:12px;backdrop-filter:blur(8px);transition:transform .25s,border-color .25s,box-shadow .25s}
+.brand-plate:hover{transform:scale(1.025)}
+.bitc-plate{width:130px;padding:6px 9px;background:linear-gradient(145deg,#102d23e8,#091c16ed);border-color:#4baf78;box-shadow:inset 0 1px #8ef3aa1c,0 10px 24px #0004,0 0 22px #17a96d30}
+.bitc-plate:hover{border-color:#7adea2;box-shadow:0 10px 24px #0004,0 0 27px #17a96d55}
+.bitc-logo{width:100%;height:100%;object-fit:contain}
+.btec-wrap{width:154px;height:70px;padding:6px 10px;background:linear-gradient(145deg,#f9fbf5f5,#e8eee8f2);border-color:#e7b477;box-shadow:inset 0 1px #fff,0 10px 24px #0004,0 0 22px #f3702133}
+.btec-wrap:hover{border-color:#ffca88;box-shadow:0 10px 24px #0004,0 0 27px #f3702155}
+.btec-wrap img{width:100%;height:100%;object-fit:contain}
+
+@media(max-width:600px){
+  .site-header{min-height:80px;padding:10px 12px;gap:8px}
+  .brand-lockup{gap:8px;min-width:0}
+  .brand-plate,.btec-wrap{height:52px;border-radius:9px}
+  .bitc-plate{width:79px;padding:4px 5px}
+  .btec-wrap{width:110px;padding:5px 6px}
+  .bitc-logo,.btec-wrap img{width:100%;height:100%}
+  .brand-name{max-width:127px}
+  .header-right{gap:0}
+}
+@media(max-width:380px){
+  .brand-lockup{gap:6px}
+  .bitc-plate{width:70px}
+  .btec-wrap{width:100px}
+  .brand-name{max-width:112px}
+}
